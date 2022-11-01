@@ -11,7 +11,7 @@ def square_item(length: int):
     while counter < length:
         if counter % 2 == 0:
             squared.append(counter ** 2)
-        yield squared
+            yield squared
         counter += 1
 
     return squared

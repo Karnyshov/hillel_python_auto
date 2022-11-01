@@ -8,8 +8,8 @@
 
 
 def func_name(function):
-    def name(a, b):
-        return f"{function.__name__}\n{function(a,b)}"
+    def name(*args):
+        return f"{function.__name__}\n{function(*args)}"
     return name
 
 
