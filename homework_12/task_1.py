@@ -8,12 +8,11 @@ import time
 
 
 def time_of_function(function):
-    def wrapped():
+    def wrapped(*args):
         start_time = time.perf_counter()
-        result = function()
+        result = function(*args)
         end_time = time.perf_counter() - start_time
-        print(end_time)
-        return result
+        return f"{result}\n{end_time}"
     return wrapped
 
 
@@ -22,4 +21,4 @@ def squares():
     return [x**2 for x in range(100000)]
 
 
-squares()
+print(squares())
