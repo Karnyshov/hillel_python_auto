@@ -18,3 +18,20 @@ def test_error():
 
 
 test_error()
+
+
+def test_index_error(range_len: int):
+    lst = [1, 2, 3, 4, 5]
+    for x in range(range_len):
+        try:
+            lst.append(x)
+            if len(lst) > 10:
+                raise IndexError("List cannot be greater than 10")
+        except IndexError as error:
+            print(error)
+            lst.pop(-1)
+            return lst
+    return lst
+
+
+print(test_index_error(7))
