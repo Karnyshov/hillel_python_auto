@@ -44,20 +44,25 @@ class Zoo:
 
     @address.setter
     def address(self, address):
+        assert type(address) == str, "Address should be a string"
+        assert len(address) > 0, "Address cannot be empty"
         self._address = address
 
     @visitors.setter
     def visitors(self, visitors: int):
+        assert type(visitors) == int, "Visitors should be integer"
         assert visitors >= 0, "Visitors cannot be less 0"
         self._visitors = visitors
 
     @animals.setter
     def animals(self, animals: int):
+        assert type(animals) == int, "Animals should be integer"
         assert animals >= 0, "Animals cannot be less 0"
         self._animals = animals
 
     @price.setter
     def price(self, price: int):
+        assert type(price) == int, "Price should be integer"
         assert price >= 0, "Price cannot be less 0"
         self._price = price
 
