@@ -1,5 +1,5 @@
 """
-Описать класс Zoo.
+Describe class Zoo.
 """
 
 
@@ -14,10 +14,10 @@ class Zoo:
                  price: int
                  ):
         self._address = address
-        self._area = area
-        self._visitors = visitors
-        self._animals = animals
-        self._price = price
+        self._area = int(area)
+        self._visitors = int(visitors)
+        self._animals = int(animals)
+        self._price = int(price)
 
     def add_animal(self):
         self._animals += 1
@@ -48,14 +48,17 @@ class Zoo:
 
     @visitors.setter
     def visitors(self, visitors: int):
+        assert visitors >= 0, "Visitors cannot be less 0"
         self._visitors = visitors
 
     @animals.setter
     def animals(self, animals: int):
+        assert animals >= 0, "Animals cannot be less 0"
         self._animals = animals
 
     @price.setter
     def price(self, price: int):
+        assert price >= 0, "Price cannot be less 0"
         self._price = price
 
 
