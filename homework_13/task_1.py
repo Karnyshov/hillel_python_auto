@@ -27,6 +27,10 @@ class Zoo:
         return cls.penguin_family
 
     @property
+    def area(self):
+        return self._area
+
+    @property
     def address(self):
         return self._address
 
@@ -41,6 +45,12 @@ class Zoo:
     @property
     def price(self):
         return self._price
+
+    @area.setter
+    def area(self, area: int):
+        assert type(area) == int, "Area should be integer"
+        assert area >= 0, "Area cannot be less 0"
+        self._area = area
 
     @address.setter
     def address(self, address):
