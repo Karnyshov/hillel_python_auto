@@ -7,7 +7,7 @@ def test_open_prices(main_page):
 def test_scrolling(main_page):
     main_page.scroll_to_footer()
     main_page.scroll_to_header()
-    main_page.scroll_to_element(main_page._price_section)
+    main_page.scroll_to_element(main_page._locators.price_section)
 
 
 def test_current_url(main_page):
