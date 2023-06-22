@@ -12,23 +12,31 @@
 """
 from xml.etree import ElementTree
 
-tree = ElementTree.parse("movies.xml")
-root = tree.getroot()
 
-movies_list = []
+class XMLParser:
+    movies_list = []
+    tree = ElementTree.parse("movies.xml")
+    root = tree.getroot()
 
-for genre in root.findall("genre"):
-    category = genre.attrib["category"]
-    for decades in genre.findall("decade"):
-        decade = decades.attrib["years"]
-        for movie in decades.findall("movie"):
-            tmp = {"category": category,
-                   "decade": decade,
-                   "title": movie.attrib["title"],
-                   "format": movie.find("format").text,
-                   "year": movie.find("year").text,
-                   "rating": movie.find("rating").text,
-                   "description": movie.find("description").text}
-            movies_list.append(tmp)
+    @classmethod
+    def parse_movies(cls):
+        movies = []
+        for genre in cls.root.findall("genre"):
+            category = genre.attrib["category"]
+            for decades in genre.findall("decade"):
+                decade = decades.attrib["years"]
+                for movie in decades.findall("movie"):
+                    tmp = {"category": category,
+                           "decade": decade,
+                           "title": movie.attrib["title"],
+                           "format": movie.find("format").text,
+                           "year": movie.find("year").text,
+                           "rating": movie.find("rating").text,
+                           "description": movie.find("description").text}
+                    movies.append(tmp)
+        return movies
 
+
+movies_list = XMLParser.parse_movies()
 print(movies_list)
+
