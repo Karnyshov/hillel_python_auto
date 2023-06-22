@@ -14,17 +14,14 @@ from homework_25.homework.xml_parser import XMLParser
 from homework_25.homework.Movie import Movie
 
 
-class MovieAdapter(Movie):
+class MovieAdapter:
+    xml_parser = XMLParser()
 
-    def __init__(self, xml_parser: XMLParser):
-        super().__init__()
-        self.xml_parser = xml_parser
-        self.movies = []
-
-    def get_movies(self):
-        self.movies = self.xml_parser.parse_movies()
-        for movie in self.movies:
-            tmp = movie.get("title")
+    @classmethod
+    def get_movies(cls):
+        movie_list = []
+        parsed_movies = cls.xml_parser.parse_movies()
+        for movie in parsed_movies:
             tmp = Movie(movie.get("category"),
                         movie.get("decade"),
                         movie.get("title"),
@@ -32,3 +29,5 @@ class MovieAdapter(Movie):
                         movie.get("year"),
                         movie.get("rating"),
                         movie.get("description"))
+            movie_list.append(tmp)
+        return movie_list

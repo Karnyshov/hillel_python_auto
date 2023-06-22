@@ -14,7 +14,6 @@ from xml.etree import ElementTree
 
 
 class XMLParser:
-    movies_list = []
     tree = ElementTree.parse("movies.xml")
     root = tree.getroot()
 
@@ -35,8 +34,3 @@ class XMLParser:
                            "description": movie.find("description").text}
                     movies.append(tmp)
         return movies
-
-
-movies_list = XMLParser.parse_movies()
-print(movies_list)
-
