@@ -1,8 +1,9 @@
-from homework_28.homework.repositories.base_repository import BaseRepository
+from homework_28.homework.core.session import BaseSession
 from homework_28.homework.models.orders import Orders
 
 
-class OrdersRepository(BaseRepository):
+# TODO: replace query() with select() as for SQL Alchemy 2.0
+class OrdersRepository(BaseSession):
 
     def get_all_orders(self):
         orders = self.session.query(Orders).all()

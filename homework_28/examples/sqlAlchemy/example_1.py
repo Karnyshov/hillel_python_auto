@@ -1,6 +1,5 @@
-from sqlalchemy import create_engine, Column, select, VARCHAR, Integer
-from sqlalchemy.orm import declarative_base, Session
-
+from sqlalchemy import create_engine, Integer
+from sqlalchemy.orm import Session, DeclarativeBase, Mapped, mapped_column
 
 driver_name = "postgresql+psycopg2"
 host = "127.0.0.1"
@@ -9,22 +8,24 @@ database = "store"
 user = "postgres"
 password = "12345"
 
-engine = create_engine(f"{driver_name}://{user}:{password}@{host}:{port}/{database}")
 
-Base = declarative_base()
+class Base(DeclarativeBase):
+    pass
 
 
 class Orders(Base):
     __tablename__ = "orders"
 
-    Id = Column(VARCHAR(30))
-    product_id = Column(Integer)
-    quantity = Column(Integer)
+    id: Mapped[int] = mapped_column(primary_key=True)
+    product_id: Mapped[int] = mapped_column(Integer)
+    quantity: Mapped[int] = mapped_column(Integer)
 
-    def __repr__(self):
-        return f"{self.Id} | {self.product_id} | {self.quantity}"
+    def __repr__(self) -> str:
+        return f"Order(id={self.id!r}, product_id={self.product_id!r}, quantity={self.quantity!r})"
 
+
+engine = create_engine(f"{driver_name}://{user}:{password}@{host}:{port}/{database}", echo=True)
 
 session = Session(engine)
 
-session.query(Orders).all()
+print(session.query(Orders).all())

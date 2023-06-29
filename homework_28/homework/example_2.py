@@ -14,3 +14,11 @@ repository.add_order(
 
 new_orders = repository.get_all_orders()
 print(new_orders)
+
+repository.delete_by_id(3)
+new_orders = repository.get_all_orders()
+print(new_orders)
+
+repository.change_quantity_for_order(1, 15)
+new_orders = repository.get_all_orders()
+print(new_orders)

@@ -10,5 +10,6 @@ class BaseRepository(Singleton):
     database = "store"
     user = "postgres"
     password = "12345"
+
     engine = create_engine(f"{driver_name}://{user}:{password}@{host}:{port}/{database}")
     session = Session(engine)
